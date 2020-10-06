@@ -6,6 +6,8 @@ import Modal from '@material-ui/core/Modal'
 import { Button, Input, makeStyles } from '@material-ui/core'
 import { auth } from './firebase'
 import ImageUpload from './ImageUpload'
+import { Instagram } from '@material-ui/icons';
+import InstagramEmbed from 'react-instagram-embed'
 
 function rand() {
   return Math.round(Math.random() * 20) - 10
@@ -196,11 +198,31 @@ function App() {
 
       <div className="app__posts">
 
-        {
-          posts?.map(({ id, post }) => (
-            <Post key={id} username={post?.username} caption={post?.caption} imageUrl={post?.imageUrl} />
-          ))
-        }
+        <div className="app__postsLeft">
+
+          {
+            posts?.map(({ id, post }) => (
+              <Post key={id} postId={id} username={post?.username} caption={post?.caption} imageUrl={post?.imageUrl} />
+            ))
+          }
+
+        </div>
+
+        <div className="app__postsRight">
+          <InstagramEmbed
+            url="https://www.instagram.com/p/BlyBkcmldfq/"
+            maxWidth={320}
+            hideCaption={false}
+            containerTagName="div"
+            protocol=""
+            injectScript
+            onLoading={() => { }}
+            onSuccess={() => { }}
+            onAfterRender={() => { }}
+            onFailure={() => { }}
+          />
+        </div>
+
 
       </div>
 
